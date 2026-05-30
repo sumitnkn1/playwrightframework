@@ -1,0 +1,117 @@
+
+
+<input type="text" size="20" name="user_name" >
+
+//button[contains(@name,'user_na')]
+
+
+//tagname[@attribute='value']
+
+
+
+//input[@type='text']
+//input[@name='user_name']
+
+//input[@name='user_name' and @type='text']
+//input[@type='text'][@name='user_name']
+
+
+
+
+//input[@type='text' and @name='user_name']
+//input[@name='save' or @name='submit']
+
+//input[@placeholder='???? ?? ???? ????' or @placeholder='Email address or phone number']
+
+u_0_5_4E
+u_0_5_Uh
+u_0_5_QL
+
+id="_R_64qjbjb9pb6amH1_3242"
+    _R_64qjbjb9pb6amH1_45747
+
+//button[@id='u_0_5_']
+
+//button[starts-with(@id,'u_0_5_')]
+
+//button[ends-with(@id,'u_0_5_')]
+
+//button[contains(@id,'_0_5_')]
+
+
+
+
+//input[starts-with(@name,'user_n')]
+
+name=dsssgsdguser_namesdgsgsg
+
+//input[contains(@name,'user_name')]
+
+//button[contains(@id,'u_0_h_')]
+
+name=user_name
+
+
+//input[substring(@name,2)='ser_name']
+//input[substring(@name,3)='er_name']
+//input[substring(@name,5,3)='_na']
+
+//input[contains(@name,'_na')]
+
+
+<td>:: Sales Force Automation</td>
+//td[text()=':: Sales Force Automation']
+
+//td[contains(text(),' Force Automation')]
+
+//td[text()='User Name:']
+
+
+
+<a href="http://www.vtiger.com/products/crm/customer-support.html" target="_blank">vtiger Customer Portal</a>
+
+//a[text()='vtiger Customer Portal']
+
+//title[text()='vtiger CRM - Commercial Open Source CRM']
+
+<b>   User Name:  </>
+//b[text()='User Name:']
+//b[contains(text(),'User Name:')]
+
+
+
+
+//span[normalize-space(text())='Facebook   2020']
+
+
+html code
+<label>    who cares         about spaces   </label>
+
+xpath
+//label[normalize-space(text(),'who cares about spaces')]
+
+
+
+
+
+
+
+<a href="http://www.vtiger.com/products/crm/customer-support.html" target="_blank">vtiger Customer Portal</a>
+
+//a[text()='vtiger Customer Portal']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
