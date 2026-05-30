@@ -21,6 +21,7 @@ test('Vtiger valid Login', async ({ page }) => {
 });
 
 
+
 test('Vtiger create lead', async ({ page }) => { 
  
   await page.goto('http://localhost:100');
@@ -48,35 +49,3 @@ test('Vtiger create lead', async ({ page }) => {
   await page.waitForTimeout(3000);
   await page.close();
 });
-
-
-//("(//input[@name='button'])[3]").
-//(//input[@name='firstname']).[1]
-
-//focusable="false"
-
-
-
-
-//svg[@aria-hidden='true']
-//const browser = await chromium.launch();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
