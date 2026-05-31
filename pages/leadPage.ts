@@ -14,6 +14,7 @@ export class LeadPage {
     loc_btn_save = '//input[@name="button"]';
     loc_txt_lastName = '//td[contains(text(),"Last Name")]/following::td[1]';
     loc_txt_company = '//td[text()="Company:"]/following::td[1]';
+    loc_btn_search = '//input[@name="button" and @value="Search"]';
 
     async setFirstname(firstname: string) {
         await this.page.fill(this.loc_textbox_first_name, firstname);
@@ -37,17 +38,23 @@ export class LeadPage {
         await this.clickSave();
     }
 
-    async isLastNameDisplayed():Promise<boolean|null>
-    {
+    async isLastNameDisplayed(): Promise<boolean | null> {
         const result = this.page.locator(this.loc_txt_lastName);
         await result.waitFor({ state: 'visible' });
         return this.page.isVisible(this.loc_txt_lastName);
     }
 
-    async isCompanyDisplayed():Promise<boolean|null>
-    {
+    async isCompanyDisplayed(): Promise<boolean | null> {
         const result = this.page.locator(this.loc_txt_company);
         await result.waitFor({ state: 'visible' });
         return this.page.isVisible(this.loc_txt_company);
+    }
+
+    async searchLeadLastName(lastname: string) {
+        await this.page.locator(this.loc_textbox_last_name).nth(1).fill(lastname);
+    }
+
+    async clickSearch() {
+        await this.page.click(this.loc_btn_search);
     }
 }
