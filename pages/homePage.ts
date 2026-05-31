@@ -20,6 +20,11 @@ export class HomePage{
 
     }
 
+    async isWelcomeMessage():Promise<boolean|null>
+    {
+        return await this.page.isVisible(this.loc_welcome_msg); 
+    }
+
     
 
 }
