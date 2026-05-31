@@ -9,7 +9,7 @@ export class LoginPage{
         this.page = page;
     }
 
-    //Locators:
+    //Locators: Test
     loc_txtbox_username = '//input[@name="user_name"]';
     loc_txtbox_password = '//input[@name="user_password"]';
     loc_btn_login = '//input[@name="Login"]';
