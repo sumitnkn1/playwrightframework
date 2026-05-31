@@ -1,26 +1,41 @@
 import { test, expect } from '@playwright/test';
+import { getTestData } from '../utilities/jsonReader';
+import { LoginPage } from '../pages/loginPage';
+import { HomePage } from '../pages/homePage';
 
-test('vtiger invalid login', async ({ page }) => {
- 
-await page.goto('http://localhost:100');
-await page.locator("//input[@name='user_name']").fill('admin');
-await page.locator("//input[@name='user_password']").fill('admin');
-await page.locator("//input[@name='Login']").click;
-await expect(page).toHaveTitle(/Vtiger/);
 
+let homePage: HomePage;
+let loginPage: LoginPage;
+
+test('Verify_title_TC001', async ({ page }) => {
+  await page.goto('/');
+  const testData = await getTestData('./testdata/users.json', 'Verify_title_TC001')
+  await expect(page).toHaveTitle(testData.title);
+  await page.close();
+});
+
+test('Verify_invalid_login_TC_002', async ({ page }) => {
+loginPage = new LoginPage(page); 
+await page.goto('/');
+const testData = await getTestData('./testdata/users.json', 'Verify_invalid_login_TC_002')
+await loginPage.login(testData.username,testData.password);
+const isErrorMessage = await loginPage.isErrorMessage();
+expect(isErrorMessage).toBe(true);
+await page.close();
 });
 
 
-test('Valid login', async ({ page }) => {
+test('Verify_Valid_login_TC_003', async ({ page }) => {
  
-await page.goto('http://localhost:100');
-await page.locator("//input[@name='user_name']").fill('admin');
-await page.locator("//input[@name='user_password']").fill('admin');
-await page.locator("//input[@name='Login']").click();
-await expect(page).toHaveTitle(/Vtiger/);
-await page.locator("(//a[@href='index.php?module=Leads&action=index'])").nth(0).click();
-await page.locator("//a[@href='index.php?module=Leads&action=EditView&return_module=Leads&return_action=DetailView']");                                                                                                                                                                                                                                                           
-// .click();
+await page.goto('/');
+loginPage = new LoginPage(page);
+homePage = new HomePage(page);
+
+const testData = await getTestData('./testdata/users.json','Verify_Valid_login_TC_003');
+await loginPage.login(testData.username, testData.password);
+const isWelcomeMessage = await homePage.isWelcomeMessage();
+
+expect(isWelcomeMessage).toBe(true);
 
 });
 

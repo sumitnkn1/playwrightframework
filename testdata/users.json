@@ -1,0 +1,14 @@
+{
+    "Verify_title_TC001": {
+        "title": "vtiger CRM - Commercial Open Source CRM"
+    },
+    "Verify_invalid_login_TC_002": {
+        "username": "admin",
+        "password": "admin@34",
+        "errorMsg": "You must specify a valid username and password."
+    },
+    "Verify_Valid_login_TC_003": {
+        "username": "admin",
+        "password": "admin"
+    }
+}
