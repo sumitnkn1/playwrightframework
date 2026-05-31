@@ -1,0 +1,15 @@
+{
+    "Create_New_Lead_with_Mandatory_Fields_TC_001": {
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Jack",
+        "company":"Google"
+
+    },
+
+    "Verify_Search_Existing_Lead_by_Lastname_TC002": {
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Jack"
+    }
+}
