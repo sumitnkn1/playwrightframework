@@ -40,3 +40,49 @@ test('Verify_Search_Existing_Lead_by_Lastname_TC002', async ({ page }) => {
     expect(name).toBe(true);
     await page.close();
 })
+
+test('Handle_Dialogue_Message_Creating_New_Lead_TC_003', async ({ page }) => {
+    await page.goto('http://localhost:100/');
+    loginPage = new LoginPage(page);
+    homePage = new HomePage(page);
+    leadPage = new LeadPage(page);
+    const testData = await getTestData("./testdata/leads.json", "Handle_Dialogue_Message_Creating_New_Lead_TC_003");
+    await loginPage.login(testData.username, testData.password);
+    await homePage.clickNewLead();
+    const alertPromise = leadPage.handleVerifyDialogue()
+    await leadPage.clickSave();
+    const alertText = await alertPromise;
+    expect(alertText).toBe("Last Name cannot be empty");
+    await leadPage.setLastName(testData.lastname);
+    const alertPromise2 = leadPage.handleVerifyDialogue();
+    await leadPage.clickSave();
+    const alertText2 = await alertPromise2;
+    expect(alertText2).toBe("Company cannot be empty");
+    await leadPage.clickSave();
+    await leadPage.setCompany(testData.company);
+    await leadPage.clickSave();
+    await page.close();
+});
+
+test('Handle_Delete_Confirm_Message_Existing_Lead_TC_004', async ({ page }) => {
+    await page.goto('http://localhost:100/');
+    loginPage = new LoginPage(page);
+    homePage = new HomePage(page);
+    leadPage = new LeadPage(page);
+    const testData = await getTestData("./testdata/leads.json", "Handle_Delete_Confirm_Message_Existing_Lead_TC_004");
+    await loginPage.login(testData.username, testData.password);
+    await homePage.clickLeads();
+    await leadPage.findLastName(testData.lastname);
+    await leadPage.clickSearch();
+    const alertPromise = leadPage.handleDismissConfirm();
+    await leadPage.clickDelete();
+    const alertText = await alertPromise;
+    expect(alertText).toBe("Are you sure?");
+
+    const alertPromise2 = leadPage.handleAcceptConfirm();
+    await leadPage.clickDelete();
+    const alertText2 = await alertPromise2;
+    expect(alertText2).toBe("Are you sure?");
+
+    await page.close();
+});

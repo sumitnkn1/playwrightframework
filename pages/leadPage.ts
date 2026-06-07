@@ -14,7 +14,8 @@ export class LeadPage {
     loc_btn_save = '//input[@name="button"]';
     loc_txt_lastName = '//td[contains(text(),"Last Name")]/following::td[1]';
     loc_txt_company = '//td[text()="Company:"]/following::td[1]';
-    loc_btn_search = '//input[@name="button" and @value="Search"]';
+    loc_btn_search = '//input[@title="Search [Alt+Q]"]';
+    loc_lnk_delete = '//tr[@class="oddListRow"]/td/a[text()="del"]';
 
     async setFirstname(firstname: string) {
         await this.page.fill(this.loc_textbox_first_name, firstname);
@@ -56,5 +57,51 @@ export class LeadPage {
 
     async clickSearch() {
         await this.page.click(this.loc_btn_search);
+    }
+
+    async findLastName(lastname:string)
+    {
+        await this.page.locator(this.loc_textbox_last_name).nth(1).fill(lastname)
+    }
+
+    async clickDelete()
+    {
+        await this.page.locator(this.loc_lnk_delete).nth(0).click();
+    }
+
+    async handleVerifyDialogue(): Promise<string> {
+
+        return new Promise((resolve) => {
+            this.page.once('dialog', async dialog => {
+                console.log(dialog.message());
+                const message =  dialog.message();
+                await dialog.accept();
+                resolve(message);
+            });
+        })
+    }
+
+     async handleDismissConfirm(): Promise<string> {
+
+        return new Promise((resolve) => {
+            this.page.once('dialog', async dialog => {
+                console.log(dialog.message());
+                const message =  dialog.message();
+                await dialog.dismiss();
+                resolve(message);
+            });
+        })
+    }
+
+      async handleAcceptConfirm(): Promise<string> {
+
+        return new Promise((resolve) => {
+            this.page.once('dialog', async dialog => {
+                console.log(dialog.message());
+                const message =  dialog.message();
+                await dialog.accept();
+                resolve(message);
+            });
+        })
     }
 }

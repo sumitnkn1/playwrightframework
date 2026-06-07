@@ -11,5 +11,21 @@
         "username":"admin",
         "password":"admin",
         "lastname": "Jack"
+    },
+
+     "Handle_Dialogue_Message_Creating_New_Lead_TC_003":{
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Amitabh",
+        "company":"Lenovo"
+
+    },
+
+    "Handle_Delete_Confirm_Message_Existing_Lead_TC_004":{
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Amitabh",
+        "company":"Lenovo"
+
     }
 }
