@@ -20,6 +20,16 @@ export class HomePage{
 
     }
 
+    async isWelcomeMessage():Promise<boolean|null>
+    {
+        return await this.page.isVisible(this.loc_welcome_msg); 
+    }
+
+    async clickLeads()
+    {
+        await this.page.click(this.loc_leads_lnk);
+    }
+
     
 
 }
