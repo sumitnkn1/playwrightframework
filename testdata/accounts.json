@@ -1,0 +1,11 @@
+{
+    "Verify_Window_PopUp_TC001": {
+        "username":"admin",
+        "password":"admin",
+        "accountname": "vtiger"
+    },
+    "Verify_New_Tab_Window_TC002": {
+        "username":"admin",
+        "password":"admin"
+    }
+}

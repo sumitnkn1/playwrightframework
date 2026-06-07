@@ -15,6 +15,10 @@ export class LoginPage{
     loc_btn_login = '//input[@name="Login"]';
     loc_img_logo = '//img[@src="include/images/vtiger-crm.gif"]'
     loc_txt_error_msg = '//td[contains(text(),"You must specify a valid username and password.")]';
+    loc_lnk_customer_portal = '//a[text()="vtiger Customer Portal"]';
+    loc_lnk_newtab_login = '//span[contains(text(),"Login")]';
+    loc_text_newtab_username = '//input[@name="username"]';
+    loc_text_newtab_password = '//input[@name="password"]';
 
     async login (userid: string, password:string)
     {
@@ -51,5 +55,20 @@ export class LoginPage{
     async passwordFieldType():Promise<string|null>
     {
         return await this.page.locator(this.loc_txtbox_password).getAttribute("type");
+    }
+
+    async newTabHandle(username:string, password:string)
+    {
+
+        const [newTab] = await Promise.all([
+        this.page.context().waitForEvent('page'),
+        await this.page.click(this.loc_lnk_customer_portal)
+        ]);
+        await newTab.waitForLoadState();
+        await newTab.click(this.loc_lnk_newtab_login);
+        await newTab.locator(this.loc_text_newtab_username).fill(username);
+        await newTab.locator(this.loc_text_newtab_password).fill(password);
+        await this.page.bringToFront();
+        await newTab.close();
     }
 }

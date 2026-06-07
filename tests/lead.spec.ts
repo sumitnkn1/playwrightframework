@@ -42,7 +42,7 @@ test('Verify_Search_Existing_Lead_by_Lastname_TC002', async ({ page }) => {
 })
 
 test('Handle_Dialogue_Message_Creating_New_Lead_TC_003', async ({ page }) => {
-    await page.goto('http://localhost:100/');
+    await page.goto('/');
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
     leadPage = new LeadPage(page);
@@ -65,7 +65,7 @@ test('Handle_Dialogue_Message_Creating_New_Lead_TC_003', async ({ page }) => {
 });
 
 test('Handle_Delete_Confirm_Message_Existing_Lead_TC_004', async ({ page }) => {
-    await page.goto('http://localhost:100/');
+    await page.goto('/');
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
     leadPage = new LeadPage(page);

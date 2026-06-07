@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { getTestData } from '../utilities/jsonReader';
 import { LoginPage } from '../pages/loginPage';
 import { HomePage } from '../pages/homePage';
+import { log } from 'node:console';
 
 
 let homePage: HomePage;
@@ -41,7 +42,7 @@ expect(isWelcomeMessage).toBe(true);
 
 test('Fill_form_TC_004', async ({ page }) => {
  
-await page.goto('http://localhost:100');
+await page.goto('/');
 await page.locator("//input[@name='user_name']").fill('admin');
 await page.locator("//input[@name='user_password']").fill('admin');
 await page.locator("//input[@name='Login']").click();
@@ -72,6 +73,21 @@ await page.locator("//input[@value='Delete']").click();
 
 });
 
+test('Verify_New_Tab_Window_TC005', async ({ page }) => {
+  await page.goto('/');
+  const testData = await getTestData('./testdata/users.json', 'Verify_New_Tab_Window_TC005')
+  const loginPage = new LoginPage(page);
+  const homePage = new HomePage(page);
+  await loginPage.login(testData.username,testData.password);
+  await homePage.clickLogout();
+  await loginPage.newTabHandle(testData.username, testData.password);
+ 
+  await loginPage.setPassword(testData.password);
+  await loginPage.clickLogin();
+  const isWelcomeMessage = await homePage.isWelcomeMessage();
+  expect(isWelcomeMessage).toBe(true);
+  await page.close();
+});
 
 
 

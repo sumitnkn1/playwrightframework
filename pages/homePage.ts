@@ -13,6 +13,8 @@ export class HomePage{
     loc_welcome_msg = '//strong[contains(normalize-space(),"Welcome admin")]';
     loc_newlead_lnk = '//a[text()="New Lead"]';
     loc_leads_lnk = '//a[text()="Leads"]';
+    loc_lnk_newAccount = '//a[text()="New Account"]';
+    
 
     async clickNewLead()
     {
@@ -30,6 +32,15 @@ export class HomePage{
         await this.page.click(this.loc_leads_lnk);
     }
 
+    async clickNewAccount()
+    {
+        await this.page.click(this.loc_lnk_newAccount);
+    }
+
+    async clickLogout()
+    {
+        await this.page.click(this.loc_logout_lnk);
+    }
     
 
 }

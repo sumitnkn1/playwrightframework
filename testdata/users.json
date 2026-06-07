@@ -10,5 +10,9 @@
     "Verify_Valid_login_TC_003": {
         "username": "admin",
         "password": "admin"
-    }
+    },
+    "Verify_New_Tab_Window_TC005": {
+        "username": "admin",
+        "password": "admin"
+    } 
 }
