@@ -39,7 +39,7 @@ expect(isWelcomeMessage).toBe(true);
 
 });
 
-test('Fill form', async ({ page }) => {
+test('Fill_form_TC_004', async ({ page }) => {
  
 await page.goto('http://localhost:100');
 await page.locator("//input[@name='user_name']").fill('admin');
