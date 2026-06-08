@@ -59,13 +59,11 @@ export class LeadPage {
         await this.page.click(this.loc_btn_search);
     }
 
-    async findLastName(lastname:string)
-    {
+    async findLastName(lastname: string) {
         await this.page.locator(this.loc_textbox_last_name).nth(1).fill(lastname)
     }
 
-    async clickDelete()
-    {
+    async clickDelete() {
         await this.page.locator(this.loc_lnk_delete).nth(0).click();
     }
 
@@ -74,34 +72,60 @@ export class LeadPage {
         return new Promise((resolve) => {
             this.page.once('dialog', async dialog => {
                 console.log(dialog.message());
-                const message =  dialog.message();
+                const message = dialog.message();
                 await dialog.accept();
                 resolve(message);
             });
         })
     }
 
-     async handleDismissConfirm(): Promise<string> {
+    async handleDismissConfirm(): Promise<string> {
 
         return new Promise((resolve) => {
             this.page.once('dialog', async dialog => {
                 console.log(dialog.message());
-                const message =  dialog.message();
+                const message = dialog.message();
                 await dialog.dismiss();
                 resolve(message);
             });
         })
     }
 
-      async handleAcceptConfirm(): Promise<string> {
+    async handleAcceptConfirm(): Promise<string> {
 
         return new Promise((resolve) => {
             this.page.once('dialog', async dialog => {
                 console.log(dialog.message());
-                const message =  dialog.message();
+                const message = dialog.message();
                 await dialog.accept();
                 resolve(message);
             });
         })
     }
+
+    async selectCheckBoxFromLeadTable(lastname: string) {
+        let found = false;
+        for (let i: number = 5; i < 25; i++) {
+            const cellText = await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td[4]`).textContent();
+            //console.log(`Row ${i}: ${cellText ?? 'N/A'}`);
+            if (cellText?.trim() === lastname) {
+                found  =true;
+                await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]//input[@name="selected_id"]`).check();
+                await this.page.locator(`//table[@class="FormBorder"]/tbody/tr[${i}]/td/a[text()="edit"]`).click();
+                break;
+            }
+
+        }
+        if(!found)
+        {
+            throw new Error(`Record "${lastname}" not found in lead table`);
+        }
+    }
+
+    async getLeadName(lastname:string)
+    {
+        return await this.page.locator(`//td[contains(text(),"${lastname}")]`).textContent()
+    }
+
+    
 }
