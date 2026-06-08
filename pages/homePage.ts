@@ -14,7 +14,7 @@ export class HomePage{
     loc_newlead_lnk = '//a[text()="New Lead"]';
     loc_leads_lnk = '//a[text()="Leads"]';
     loc_lnk_newAccount = '//a[text()="New Account"]';
-    
+    loc_lnk_newproduct = '//a[text()="New Product"]'
 
     async clickNewLead()
     {
@@ -40,6 +40,11 @@ export class HomePage{
     async clickLogout()
     {
         await this.page.click(this.loc_logout_lnk);
+    }
+
+    async clickNewProduct()
+    {
+        await this.page.locator(this.loc_lnk_newproduct).click();
     }
     
 

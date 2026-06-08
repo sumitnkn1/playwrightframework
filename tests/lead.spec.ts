@@ -86,3 +86,22 @@ test('Handle_Delete_Confirm_Message_Existing_Lead_TC_004', async ({ page }) => {
 
     await page.close();
 });
+
+test('Webtable_to_locate_element_and_select_TC_005', async({page}) =>{
+    loginPage = new LoginPage(page);
+    homePage = new HomePage(page);
+    leadPage = new LeadPage(page);
+    const testData = await getTestData('./testdata/leads.json','Webtable_to_locate_element_and_select_TC_005')
+    await page.goto('/');
+    await loginPage.login(testData.username, testData.password);
+    await homePage.clickLeads();
+    await leadPage.selectCheckBoxFromLeadTable(testData.lastname);
+    const getLeadName = await leadPage.getLeadName(testData.lastname);
+    await expect(getLeadName).toContain(testData.lastname);
+
+
+})
+
+test('Verify_file_upload_TC006', async({page})=>{
+
+})

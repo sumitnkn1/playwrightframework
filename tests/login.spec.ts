@@ -86,7 +86,7 @@ test('Verify_New_Tab_Window_TC005', async ({ page }) => {
   await loginPage.clickLogin();
   const isWelcomeMessage = await homePage.isWelcomeMessage();
   expect(isWelcomeMessage).toBe(true);
-  await page.close();
+  //await page.close();
 });
 
 

@@ -27,5 +27,21 @@
         "lastname": "Amitabh",
         "company":"Lenovo"
 
+    },
+
+    "Webtable_to_locate_element_and_select_TC_005":{
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Maria Miller",
+        "company":"Lenovo"
+
+    },
+
+    "Verify_file_upload_TC006":{
+        "username":"admin",
+        "password":"admin",
+        "lastname": "Maria Miller",
+        "company":"Lenovo"
+
     }
 }
