@@ -19,5 +19,21 @@ test('Verify_file_upload_TC_001', async({page})=>{
     await productsPage.uploadFile('./testdata/myfile.png');
     const result = await productsPage.isFileUploadSuccess();
     expect(result).toBe('myfile.png');
+    console.log('Test completed');
+
+})
+
+test('Verify_file_upload_using_choose_option_TC_002', async({page})=>{
+    await page.goto('/');
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+    const productsPage = new ProductsPage(page);
+    await loginPage.login("admin","admin");
+    await homePage.clickNewProduct();
+    
+    await productsPage.uploadFileUsingChooseOption('./testdata/myfile.png');
+    const result = await productsPage.isFileUploadSuccess();
+    expect(result).toBe('myfile.png');
+    console.log('Test completed');
 
 })
